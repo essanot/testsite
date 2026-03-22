@@ -1,21 +1,52 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Esa Web site</title>
-<link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
-  <style>
-    .box {
-      max-width:200px;
-      padding:10px,10px;
-       color:pink;
-      background-color:#584923;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>اختبار التصميم المتجاوب</title>
+
+<style>
+body{
+    font-family: Arial;
+    margin:0;
+    padding:20px;
+    background:#f5f5f5;
+}
+
+/* الحاوية */
+.container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:15px;
+}
+
+/* الصناديق */
+.box{
+    background:#4CAF50;
+    color:white;
+    padding:40px 10px;
+    text-align:center;
+    font-size:20px;
+    border-radius:8px;
+}
+</style>
+
 </head>
 <body>
-  <div class="box">
-     <p>Good Work</p>
-  </div>
+
+<h2>اختبار CSS Grid المتجاوب</h2>
+<p>غيّر حجم الشاشة أو افتح الصفحة على أجهزة مختلفة لترى عدد الأعمدة يتغير تلقائيًا.</p>
+
+<div class="container">
+<div class="box">1</div>
+<div class="box">2</div>
+<div class="box">3</div>
+<div class="box">4</div>
+<div class="box">5</div>
+<div class="box">6</div>
+<div class="box">7</div>
+<div class="box">8</div>
+</div>
+
 </body>
 </html>
