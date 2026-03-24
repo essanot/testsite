@@ -1,144 +1,92 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شرح كود كشف الماوس واللمس</title>
+    
+    <style>
+        /* التنسيقات العامة التي تظهر للجميع (جوال وكمبيوتر) */
+        body {
+            font-family: sans-serif; /* نوع الخط */
+            display: flex;           /* نظام ترتيب العناصر لتوسيط البطاقة */
+            justify-content: center; /* توسيط أفقي */
+            align-items: center;     /* توسيط عمودي */
+            height: 100vh;           /* جعل الطول يأخذ كامل شاشة المتصفح */
+            margin: 0;               /* إلغاء الفراغات الافتراضية حول الصفحة */
+            background-color: #f4f4f4; /* لون خلفية الصفحة رمادي فاتح */
+        }
 
-<title>إجابة X</title>
-<link rel="icon" type="image/png" href="favicon.png">
-<style>
+        /* تنسيق شكل البطاقة الأساسي */
+        .card {
+            padding: 30px;           /* مسافة داخلية بين النص والإطار */
+            background: white;       /* لون البطاقة أبيض */
+            border: 2px solid #ddd;  /* إطار رمادي خفيف */
+            border-radius: 15px;     /* جعل حواف البطاقة دائرية */
+            text-align: center;      /* توسيط النص داخل البطاقة */
+            width: 280px;            /* عرض البطاقة */
+            
+            /* أهم سطر للنعومة: أي تغيير في اللون أو الحجم سيستغرق 0.4 ثانية */
+            transition: all 0.4s ease-in-out; 
+        }
 
-body{
-font-family:Tahoma;
-margin:204;
-background:#f5f5f5;
-padding:20px;
-}
+        /* -------------------------------------------------- */
+        /* 🚀 الجزء الاحترافي: كشف الماوس (أجهزة الكمبيوتر) 🚀 */
+        /* -------------------------------------------------- */
+        
+        /* هذا الشرط يعني: إذا كان الجهاز يدعم تمرير المؤشر (Hover) 
+           وكانت أداة التأشير دقيقة (Fine) مثل الماوس */
+        @media (hover: hover) and (pointer: fine) {
+            
+            /* هنا نضع التنسيق الذي نريده أن يظهر "فقط" عند تمرير الماوس */
+            .card:hover {
+                border-color: #3498db;      /* تغيير لون الإطار للأزرق */
+                background-color: #ebf5fb;  /* تغيير الخلفية لأزرق فاتح جداً */
+                transform: translateY(-10px); /* رفع البطاقة للأعلى قليلاً (تأثير رائع) */
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* إضافة ظل تحت البطاقة */
+                cursor: pointer;            /* تحويل شكل الماوس ليد (يد ضاغطة) */
+            }
 
-/* الحاوية الرئيسية */
-.container{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:20px;
-}
+            /* إضافة نص توضيحي يظهر فقط لمستخدمي الماوس */
+            .card::after {
+                content: "✅ تم اكتشاف ماوس: التأثيرات تعمل";
+                display: block;
+                font-size: 12px;
+                color: #3498db;
+                margin-top: 15px;
+            }
+        }
 
-/* قسم الاسئلة */
-.questions{
-background:white;
-padding:20px;
-border-radius:8px;
-}
+        /* -------------------------------------------------- */
+        /* 📱 الجزء الخاص بأجهزة اللمس (الجوالات والتابلت) 📱 */
+        /* -------------------------------------------------- */
+        
+        /* هذا الشرط يعني: إذا كانت أداة التأشير "خشنة" (Coarse) مثل الإصبع */
+        @media (pointer: coarse) {
+            .card {
+                border-color: #e67e22; /* تغيير الإطار للبرتقالي ليميز مستخدم الجوال */
+            }
 
-/* السؤال */
-.question{
-padding:15px;
-border-bottom:1px solid #ddd;
-}
-
-.question:last-child{
-border-bottom:none;
-}
-
-/* جدول الاعضاء */
-.members{
-background:white;
-padding:20px;
-border-radius:8px;
-}
-
-table{
-width:100%;
-border-collapse:collapse;
-}
-
-th,td{
-padding:10px;
-border-bottom:1px solid #ddd;
-text-align:right;
-}
-
-th{
-background:#f0f0f0;
-}
-
-</style>
-
+            /* إضافة نص توضيحي يظهر فقط لمستخدمي اللمس */
+            .card::after {
+                content: "📱 جهاز لمس: تم إيقاف تأثيرات الـ Hover للسرعة";
+                display: block;
+                font-size: 12px;
+                color: #e67e22;
+                margin-top: 15px;
+            }
+            
+            /* ملاحظة: هنا لم نضع كود .card:hover 
+               لذلك لن يحدث أي شيء مزعج عند لمس البطاقة بالإصبع */
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="container">
-
-<!-- قسم الاسئلة -->
-<div class="questions">
-
-<h2>أحدث الأسئلة</h2>
-
-<div class="question">
-ما أفضل لغة برمجة لتطوير المواقع؟
-</div>
-
-<div class="question">
-كيف أجعل موقعي سريع التحميل؟
-</div>
-
-<div class="question">
-ما الفرق بين HTML و CSS؟
-</div>
-
-<div class="question">
-كيف أتعلم JavaScript بسرعة؟
-</div>
-
-<div class="question">
-ما أفضل قاعدة بيانات للمواقع الكبيرة؟
-</div>
-
-</div>
-
-
-<!-- جدول الاعضاء -->
-<div class="members">
-
-<h2>الأعضاء النشطون</h2>
-
-<table>
-
-<tr>
-<th>الاسم</th>
-<th>النقاط</th>
-</tr>
-
-<tr>
-<td>أحمد</td>
-<td>1200</td>
-</tr>
-
-<tr>
-<td>محمد</td>
-<td>980</td>
-</tr>
-
-<tr>
-<td>سارة</td>
-<td>870</td>
-</tr>
-
-<tr>
-<td>خالد</td>
-<td>640</td>
-</tr>
-
-<tr>
-<td>ليلى</td>
-<td>520</td>
-</tr>
-
-</table>
-
-</div>
-
-</div>
+    <div class="card">
+        <strong>بطاقة ذكية</strong>
+        <p>هذا التصميم يعرف نوع جهازك!</p>
+    </div>
 
 </body>
 </html>
